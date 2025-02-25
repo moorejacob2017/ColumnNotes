@@ -62,7 +62,7 @@ function createEditingWindow(filePath = null) {
         {
             width: 800,
             height: 600,
-            icon: path.join(__dirname, 'icon.png'),
+            icon: path.join(__dirname, 'icons/icon.png'),
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js'),
                 contextIsolation: true,

@@ -1,6 +1,6 @@
 {
   "name": "column_notes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Column Notes",
   "license": "ISC",
   "author": "Jacob Moore",
@@ -16,6 +16,7 @@
     "electron-builder": "^25.1.8"
   },
   "dependencies": {
+    "dompurify": "^3.2.4",
     "highlight.js": "^11.11.1",
     "marked": "^15.0.6",
     "marked-highlight": "^2.2.1",
@@ -33,12 +34,12 @@
       "utils/**/*",
       "js/**/*",
       "css/**/*",
-      "icon.png"
+      "icons/icon.png"
     ],
     "linux": {
       "target": "AppImage",
       "category": "Utility",
-      "icon": "icon.png"
+      "icon": "icons/icon.png"
     }
   }
 }

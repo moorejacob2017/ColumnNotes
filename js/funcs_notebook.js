@@ -3,6 +3,22 @@
 //=======================================================================================================
 // UTILITY FUNCTIONS
 
+function htmlEncode(text) {
+    return text.replace(/&/g, "&amp;")
+               .replace(/</g, "&lt;")
+               .replace(/>/g, "&gt;")
+               .replace(/"/g, "&quot;")
+               .replace(/'/g, "&#39;");
+}
+
+function htmlDecode(text) {
+    return text.replace(/&quot;/g, '"')
+               .replace(/&#39;/g, "'")
+               .replace(/&lt;/g, "<")
+               .replace(/&gt;/g, ">")
+               .replace(/&amp;/g, "&");
+}
+
 // Base32 alphabet (RFC 4648 standard)
 const base32Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 

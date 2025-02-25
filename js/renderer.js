@@ -1,3 +1,11 @@
+function htmlEncode(text) {
+    return text.replace(/&/g, "&amp;")
+               .replace(/</g, "&lt;")
+               .replace(/>/g, "&gt;")
+               .replace(/"/g, "&quot;")
+               .replace(/'/g, "&#39;");
+}
+
 // Utility function to initialize a DataTable
 function initializeDataTable({ notebook, tableId, columnHeaderMapping, tableData, rowIdKey }) {
     const tableElement = $(`#${tableId}`);
@@ -15,7 +23,7 @@ function initializeDataTable({ notebook, tableId, columnHeaderMapping, tableData
     const columns = [
         ...Object.keys(columnHeaderMapping).map(key => ({
             data: key,
-            title: columnHeaderMapping[key]
+            title: htmlEncode(columnHeaderMapping[key]) //<---- PREVENTS XSS IN COLUMN NAMES
         })),
         {
             data: null,
