@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <!-- Content-Security-Policy for security -->
+    <!-- Uncomment and configure properly when deploying -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+
+    <title>Column Notes</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./utils/datatables.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/modals.css">
+    <link rel="stylesheet" href="./css/github-dark.min.css">
+
+</head>
+<body>
+    <!-- Header Section -->
+    
+
+    <div id="heading-container">
+        <h1 id="main-heading">New Notebook</h1>
+        <button id="title-edit-btn" class="edit-button" title="Edit Title">🖉</button>
+        <button id="reload-btn" class="edit-button noselect" title="Reload Notebook">⟳</button>
+    </div>
+
+    
+
+
+    <!-- Notebook Title Editor Modal -->
+    <div id="modal-notebook-title-editor" class="modal-overlay">
+        <div id="modal-notebook-title-editor-panel" class="modal-panel">
+            <div id="modal-notebook-title-editor-header" class="modal-header">
+                <button class="btn-cancel" id="btn-notebook-title-cancel">Cancel</button>
+                <button class="btn-save" id="btn-notebook-title-save">Save</button>
+            </div>
+            <div class="modal-body">
+                <label for="input-notebook-title">Notebook Title:</label>
+                <input id="input-notebook-title" type="text" placeholder="Enter notebook title..." />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Column Name Editor Modal -->
+    <div id="modal-column-name-editor" class="modal-overlay">
+        <div id="modal-column-name-editor-panel" class="modal-panel">
+            <div id="modal-column-name-editor-header" class="modal-header">
+                <button class="btn-cancel" id="btn-column-name-cancel">Cancel</button>
+                <button class="btn-save" id="btn-column-name-save">Save</button>
+            </div>
+            <div class="modal-body">
+                <label for="input-column-name">Column Name:</label>
+                <input id="input-column-name" type="text" placeholder="Enter column name..." />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Note Editor Modal -->
+    <div id="modal-note-editor" class="modal-overlay">
+        <div id="modal-note-editor-panel" class="modal-panel">
+            <div id="modal-note-editor-header" class="modal-header">
+                <button class="btn-cancel" id="btn-note-editor-cancel">Cancel</button>
+                <button class="btn-save" id="btn-note-editor-save">Save</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section" id="note-editor-upper">
+                    <!-- Placeholder for column editors -->
+                </div>
+                <div class="modal-section" id="note-editor-lower">
+                    <textarea id="input-note-content" placeholder="Enter note here..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Table Section -->
+    <div class="table-container" style="margin: 10px 20px;">
+        <table id="main-table" class="compact hover nowrap oder-column row-border"></table>
+    </div>
+    
+    <script>
+        // Insert 4 spaces when Tab is pressed on note editor modal textbox
+        const textarea = document.getElementById('input-note-content');
+        textarea.addEventListener('keydown', function (e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); // Prevent default tab behavior
+
+                const cursorPosition = textarea.selectionStart;
+                const textBefore = textarea.value.substring(0, cursorPosition);
+                const textAfter = textarea.value.substring(cursorPosition);
+                const spaces = '    '; // Four spaces
+
+                // Insert 4 spaces at the cursor position
+                textarea.value = textBefore + spaces + textAfter;
+
+                // Move the cursor to the right by 4 spaces
+                textarea.selectionStart = textarea.selectionEnd = cursorPosition + spaces.length;
+            }
+        });
+    </script>
+    
+    <!-- Scripts -->
+    <script src="./utils/jquery-3.7.1.min.js"></script>
+    <script src="./utils/datatables.min.js"></script>
+    <script src="./js/modals.js"></script>
+    <script src="./js/funcs_notebook.js"></script>
+    <script src="./js/renderer.js"></script>
+</body>
+</html>

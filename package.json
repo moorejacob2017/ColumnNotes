@@ -1,0 +1,44 @@
+{
+  "name": "column_notes",
+  "version": "0.0.1",
+  "description": "Column Notes",
+  "license": "ISC",
+  "author": "Jacob Moore",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "marked": "^15.0.6",
+    "marked-highlight": "^2.2.1",
+    "sqlite3": "^5.1.7"
+  },
+  "build": {
+    "appId": "com.columnnotes",
+    "productName": "Column Notes",
+    "files": [
+      "package.json",
+      "preload.js",
+      "main.js",
+      "file_selection.html",
+      "index.html",
+      "utils/**/*",
+      "js/**/*",
+      "css/**/*",
+      "icon.png"
+    ],
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility",
+      "icon": "icon.png"
+    }
+  }
+}

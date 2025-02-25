@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Column Notes</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            position: fixed;
+            inset: 0px;
+            margin: auto;
+        }
+
+        .button-1 {
+            padding: 7px 27px;
+            border-radius: 6px;
+            border: none;
+            background-color: #3f3f3f; /*7648d9*/
+            color: #ffffff;
+            cursor: pointer;
+            width: 100px;
+            box-shadow: 0 6px 12px 0 rgba(0,0,0,0.15), 0 4px 14px 0 rgba(0,0,0,0.12);
+        }
+
+        .button-1:hover {
+            background-color: #555555; /*8b62e0*/
+        }
+
+        .start-option-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 95%; /* Adjust width as needed */
+            /*margin: 0 auto;  Center the container */
+            /*border-top: 1px solid #333;  Horizontal line above */
+            position: fixed;
+            inset: 0px;
+            margin: auto;
+            padding-top: 15px;
+            
+        }
+
+        .start-option-section {
+            display: flex;
+            justify-content: space-between; /* Space between text and button */
+            align-items: center; /* Align items vertically */
+            padding: 10px;
+            /* border: 1px solid #242424;  Optional border for clarity */
+            /* border-radius: 3px; Rounded corners */
+
+            /*border-top: 1px solid #444;  Horizontal line above */
+            border-bottom: 1px solid #333; /* Horizontal line below */
+        }
+
+        .start-option-text {
+            font-size: 16px;
+            margin: 0; /* Remove default margin */
+        }
+    </style>
+</head>
+<body>
+    <!--
+    <h1 style="text-align:center;">Column Notes</h1>
+    <br>
+    -->
+
+    <div class="start-option-container">
+        <div class="start-option-section">
+            <span class="start-option-text">Open an Existing Notebook</span>
+            <button id="open-existing-file" class="button-1">Open</button>
+        </div>
+        <div class="start-option-section">
+            <span class="start-option-text">Create a New Notebook</span>
+            <button id="create-new-file" class="button-1">Create</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('create-new-file').addEventListener('click', async () => {
+            const filePath = await window.electronAPI.invoke('create-new-file'); // Call the main process to create a new file
+            if (filePath) {
+                window.electronAPI.send('file-selected', filePath); // Notify the main process that a file was selected
+            }
+        });
+
+        // Handle "Open Existing File" button
+        document.getElementById('open-existing-file').addEventListener('click', async () => {
+            const filePath = await window.electronAPI.invoke('open-file-dialog'); // Call the main process to open the file dialog
+            if (filePath) {
+                window.electronAPI.send('file-selected', filePath); // Notify the main process that a file was selected
+            }
+        });
+      </script>
+</body>
+</html>

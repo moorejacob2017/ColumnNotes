@@ -1,0 +1,179 @@
+body { 
+    font-family: Arial;
+    background-color: #1e1e1e;
+    color: #b3b3b3;
+}
+
+a {
+    color: #7CB9E8;
+}
+
+#heading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    
+}
+
+button {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+table.dataTable {
+    background-color: #262626;
+    margin: 10px;
+    border-radius: 3px;
+    table-layout:fixed;
+}
+
+/* Text wrapping for cells*/
+table.dataTable.nowrap td {
+    white-space: normal !important;
+}
+table.dataTable.nowrap th {
+    white-space: normal !important;
+}
+
+
+
+/*
+table {
+    table-layout:fixed;
+}
+table td {
+    word-wrap: break-word;
+    max-width: 400px;
+}
+#example td {
+    white-space:inherit;
+}
+*/
+
+/* For Firefox */
+* {
+    scrollbar-width: thin; /* Makes the scrollbar thinner */
+    scrollbar-color: #3f3f3f #666666; /* Thumb color and track color */
+}
+
+div.dt-layout-row.dt-layout-table {
+    padding: 10px;
+    background-color: #262626;
+    border-radius: 5 px;
+}
+
+button.new-button {
+    font-size: 25px; /* Adjust size as needed */
+    padding: 4px 8px; /* Minimal padding for a small button */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit; /* Allows the color to be set via other rules */
+    font-weight: bold;
+}
+
+button.edit-button,
+button.delete-button {
+    font-weight: bold;
+    font-size: 14px; /* Adjust size as needed */
+    padding: 4px 8px; /* Minimal padding for a small button */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit; /* Allows the color to be set via other rules */
+}
+
+button.new-button:hover {
+    color: #28a745; /* Color for hover effect on edit button */
+}
+
+button.edit-button:hover {
+    color: #007bff; /* Color for hover effect on edit button */
+}
+
+button.delete-button:hover {
+    color: #dc3545; /* Color for hover effect on delete button */
+}
+
+/* Optional: Enforce uniform dimensions */
+button.new-button,
+button.edit-button,
+button.delete-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; /* Uniform width */
+    height: 24px; /* Uniform height */
+    line-height: 1; /* Ensures proper text alignment */
+}
+
+.note-content {
+    padding-top: 17px;
+    padding-bottom: 17px;
+    padding-left: 17px;
+    padding-right: 17px;
+    pointer-events: auto; /* Allow interactivity */
+    text-wrap: balance;
+}
+
+.note-content:hover {
+    background-color: #262626 !important; /* Disable highlight on hover */
+}
+
+
+
+pre {
+    border: 1px solid #3f3f3f;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #202020;
+}
+
+code {
+    text-wrap: balance;
+    word-break: break-word;
+}
+
+.cpy-btn {
+    position: absolute; 
+    top: -3px; 
+    right: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #3f3f3f; /*7648d9*/
+    color: #ffffff;
+    cursor: pointer;
+    width: 100px;
+
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.15), 0 4px 14px 0 rgba(0,0,0,0.12);
+}
+.cpy-btn:hover {
+    background-color: #555555; /*8b62e0*/
+    /* background-color: #0056b3;  Darker hover effect */
+}
+
+.code-label {
+    color: #666666;
+    position: absolute; 
+    top: 5px;
+    left: 8px;
+    font-size: 12px;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                    supported by Chrome, Edge, Opera and Firefox */
+}
