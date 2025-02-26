@@ -31,16 +31,33 @@ function htmlDecode(text) {
 
 // Assuming sanitizeHTML is defined somewhere
 function sanitizeHTML(input) {
-  // Configure DOMPurify to prevent sanitizing buttons and other elements from the code blocks
   const config = {
-    ALLOWED_TAGS: ['b', 'p', 'i', 'br', 'em', 'strong', 'a', 'code', 'pre', 'div', 'span'], // Whitelist allowed tags
-    ALLOWED_ATTR: ['href', 'class', 'style'], // Allow common attributes for safe elements
-    //FORBID_TAGS: ['button'], // Block button elements to avoid dangerous <button> tags
-    //FORBID_ATTR: ['onclick'] // Block dangerous attributes like onclick
+    ALLOWED_TAGS: [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'em', 'strong',
+      'ul', 'ol', 'li', 'a', 'img', 'blockquote', 'pre', 'code', 'hr',
+      'table', 'thead', 'tbody', 'tr', 'th', 'td', 'details', 'summary',
+      'div', 'span', 'style', 'input'
+    ],
+    ALLOWED_ATTR: ['href', 'class', 'style', 'type', 'checked', 'disabled'], // Allow necessary attributes
+    ADD_TAGS: [], // No additional tags
+    ADD_ATTR: [], // No additional attributes
   };
 
-  // Sanitize the HTML except for the code blocks
-  return DOMPurify.sanitize(input, config);
+  return DOMPurify.sanitize(input, config, {
+    ALLOWED_TAGS: ['input'],
+    ALLOWED_ATTR: ['type', 'checked', 'disabled'],
+    WHOLE_DOCUMENT: false,
+    RETURN_DOM: false,
+    SANITIZE_DOM: false,
+    CUSTOM_POLICY: (node) => {
+      if (node.tagName === 'INPUT') {
+        if (node.getAttribute('type') !== 'checkbox') {
+          return null; // Remove any <input> that isn't a checkbox
+        }
+      }
+      return node;
+    }
+  });
 }
 
 // Wrap a method with sanitizeHTML

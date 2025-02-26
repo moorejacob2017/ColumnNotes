@@ -5,6 +5,7 @@
 - Fix SearchPanes dropdown "# of matches" not updating (might be issue with table state)
 - Add error handling
 - Add style to Markdown tables
+- Add style to checkboxes (make immutable and add needed attributes to filter whitelist)
 - Add shown note content updating without having to reopen the note
 - Add "Settings/View Settings"
 - Add Markdown Preview Tab to Note Editor modal
