@@ -41,11 +41,6 @@ function sanitizeHTML(input) {
     ALLOWED_ATTR: ['href', 'class', 'style', 'type', 'checked', 'disabled'], // Allow necessary attributes
     ADD_TAGS: [], // No additional tags
     ADD_ATTR: [], // No additional attributes
-  };
-
-  return DOMPurify.sanitize(input, config, {
-    ALLOWED_TAGS: ['input'],
-    ALLOWED_ATTR: ['type', 'checked', 'disabled'],
     WHOLE_DOCUMENT: false,
     RETURN_DOM: false,
     SANITIZE_DOM: false,
@@ -57,7 +52,11 @@ function sanitizeHTML(input) {
       }
       return node;
     }
-  });
+  };
+
+  const sanitized = DOMPurify.sanitize(input, config);
+  //console.log(input,"\n----------------------\n",sanitized)
+  return sanitized;
 }
 
 // Wrap a method with sanitizeHTML
@@ -100,9 +99,14 @@ renderer.list = sanitizeWrapper( renderer.list );
 renderer.listitem = sanitizeWrapper( renderer.listitem );
 renderer.checkbox = sanitizeWrapper( renderer.checkbox );
 renderer.paragraph = sanitizeWrapper( renderer.paragraph );
-renderer.table = sanitizeWrapper( renderer.table );
-renderer.tablerow = sanitizeWrapper( renderer.tablerow );
-renderer.tablecell = sanitizeWrapper( renderer.tablecell );
+
+// These are not needed 
+// I have no idea why, but there is no xss here when they are 
+// not included and they break stuff when they are.
+//renderer.table = sanitizeWrapper( renderer.table );
+//renderer.tablerow = sanitizeWrapper( renderer.tablerow );
+//renderer.tablecell = sanitizeWrapper( renderer.tablecell );
+
 
 // Inline-Level Renderers
 renderer.strong = sanitizeWrapper( renderer.strong );

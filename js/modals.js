@@ -226,7 +226,17 @@ async function saveNote(notebook, noteID) {
 
     //await updateTable(notebook);
     columns['_note_id'] = noteID;
-    $('#main-table').DataTable().row(`#${noteID}`).data(columns).draw(true);
+    let table = $('#main-table').DataTable();
+    let row = table.row(`#${noteID}`);
+
+    row.data(columns).draw(true);
+
+    // Check if the row is expanded and update its details
+    if (row.child.isShown()) {
+        const updatedDetails = await BEGetNoteContent(notebook, noteID);
+        const renderedDetails = window.markdownAPI.renderMarkdown(updatedDetails);
+        row.child(`<div class="note-content">${renderedDetails}</div>`).show();
+    }
 
     clearInputs('.note-column-input');
     document.getElementById('input-note-content').value = '';
