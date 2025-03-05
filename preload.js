@@ -5,7 +5,7 @@
 //npm install marked
 //npm install marked-highlight
 
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer, shell} = require('electron');
 const { Marked } = require("marked");
 const { markedHighlight } = require("marked-highlight");
 const hljs = require("highlight.js");
@@ -171,4 +171,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
     send: (channel, ...args) => ipcRenderer.send(channel, ...args),
     on: (channel, callback) =>
         ipcRenderer.on(channel, (_, ...args) => callback(...args)),
+    openExternal: (url) => shell.openExternal(url),
 });

@@ -1,5 +1,5 @@
 // main.js
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -42,6 +42,7 @@ function createFileSelectionWindow() {
                 preload: path.join(__dirname, 'preload.js'),
                 contextIsolation: true,
                 nodeIntegration: true,
+                enableRemoteModule: false
             },
         },
         'file_selection.html',
@@ -67,6 +68,7 @@ function createEditingWindow(filePath = null) {
                 preload: path.join(__dirname, 'preload.js'),
                 contextIsolation: true,
                 nodeIntegration: true,
+                enableRemoteModule: false
             },
         },
         'index.html',

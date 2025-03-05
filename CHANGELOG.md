@@ -2,6 +2,7 @@
 
 ### v0.0.3
 - Now automatically updates note display when editing open notes
+- Fixed links opening in Electron instead of system browser
 - Fixed Markdown Tables being stripped by filter
 - Added Markdown Table styling 
 - Added Markdown Checkbox styling

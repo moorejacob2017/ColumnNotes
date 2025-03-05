@@ -215,4 +215,10 @@ async function copyToClipboard(button, uniqueId) {
     }, 2000);
 }
 
-
+document.addEventListener('click', (event) => {
+    const target = event.target.closest('a');
+    if (target && target.href.startsWith('http')) {
+        event.preventDefault();
+        window.electronAPI.openExternal(target.href);
+    }
+});
