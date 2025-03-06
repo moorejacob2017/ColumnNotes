@@ -49,7 +49,7 @@ Filter attributes can be sorted alphabetically or by the number of times each at
 
 ### Collapse/Show/Clear All Filters  
 - **Collapse All Filters**: Click the **Collapse All** button to hide all filter dropdown panels.  
-- **Show All Filters**: Click the **Show ALl** to reveal all filter dropdown panels.  
+- **Show All Filters**: Click the **Show All** to reveal all filter dropdown panels.  
 - **Clear All Filters**: Use the **Clear All Filters** button to remove all active filters.  
 
 ### Column Reordering
